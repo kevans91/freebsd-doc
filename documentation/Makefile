@@ -22,26 +22,26 @@ LANGUAGES =	en,es,pt-br,de,ja,zh-cn,zh-tw,ru,el,hu,it,mn,nl,pl,fr
 .ORDER: generate-books-toc build
 
 all: starting-message generate-books-toc run
-generate: starting-message generate-books-toc build
-copy-shared: move-shared
+generate: starting-message generate-books-toc build .PHONY
+copy-shared: move-shared .PHONY
 
-starting-message:
+starting-message: .PHONY
 	@echo ---------------------------------------------------------------
 	@echo                   Building the documentation
 	@echo ---------------------------------------------------------------
 
-generate-books-toc:
+generate-books-toc: .PHONY
 	${PYTHON_CMD} ./tools/books-toc-parts-creator.py -l ${LANGUAGES}
 	${PYTHON_CMD} ./tools/books-toc-creator.py -l ${LANGUAGES}
 	${PYTHON_CMD} ./tools/books-toc-figures-creator.py -l ${LANGUAGES}
 	${PYTHON_CMD} ./tools/books-toc-tables-creator.py -l ${LANGUAGES}
 	${PYTHON_CMD} ./tools/books-toc-examples-creator.py -l ${LANGUAGES}
 
-run:
+run: .PHONY
 	${HUGO_CMD} server -D
 
-build:
+build: .PHONY
 	${HUGO_CMD} --minify
 
-move-shared:
+move-shared: .PHONY
 	cp -R ../shared ./shared
