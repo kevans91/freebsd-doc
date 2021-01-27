@@ -14,6 +14,12 @@ MAINTAINER=carlavilla@FreeBSD.org
 PYTHON_CMD =	/usr/local/bin/python3.7
 HUGO_CMD =	/usr/local/bin/hugo
 
+.ORDER: copy-shared starting-message
+
+.ORDER: starting-message generate-books-toc
+.ORDER: starting-message build
+.ORDER: generate-books-toc build
+
 all: starting-message generate-releases run
 generate: starting-message generate-releases build
 copy-shared: move-shared
