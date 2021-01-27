@@ -7,6 +7,10 @@
 #
 # all (default)	-	generate the releases.toml and compile all the website
 # generate	-	generate the releases.toml and build all the website
+# prepare	-	prepare for running either generate or all
+#
+# Targets that may be run manually from the command line:
+#
 # copy-shared	-	move the shared AsciiDoc entities to the folder project
 
 MAINTAINER=carlavilla@FreeBSD.org
@@ -22,6 +26,8 @@ HUGO_CMD =	/usr/local/bin/hugo
 
 all: starting-message generate-releases run
 generate: starting-message generate-releases build .PHONY
+prepare: copy-shared .PHONY
+
 copy-shared: move-shared .PHONY
 
 starting-message: .PHONY

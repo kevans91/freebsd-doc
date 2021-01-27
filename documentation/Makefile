@@ -7,6 +7,10 @@
 #
 # all (default)	-	generate the books TOC and compile all the documentation
 # generate	-	generate the books TOC and build all the documentation
+# prepare	-	prepare for running either generate or all
+#
+# Targets that may be run manually from the command line:
+#
 # copy-shared	-	move the shared AsciiDoc entities to the folder project
 
 MAINTAINER=carlavilla@FreeBSD.org
@@ -23,6 +27,8 @@ LANGUAGES =	en,es,pt-br,de,ja,zh-cn,zh-tw,ru,el,hu,it,mn,nl,pl,fr
 
 all: starting-message generate-books-toc run
 generate: starting-message generate-books-toc build .PHONY
+prepare: copy-shared .PHONY
+
 copy-shared: move-shared .PHONY
 
 starting-message: .PHONY
